@@ -22,7 +22,7 @@ export default function RootLayout(props: {children: React.ReactNode}) {
         className={`${inter.variable} antialiased`}
       >
         <Provider>
-          <Header />
+          <Header/>
           {children}
         </Provider>
       </body>

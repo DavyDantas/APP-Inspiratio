@@ -2,4 +2,9 @@
 
 body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }

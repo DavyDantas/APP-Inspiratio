@@ -1,103 +1,86 @@
-import Image from "next/image";
+import { AbsoluteCenter, VStack, Text, Box, Image, HStack, Dialog, Portal, CloseButton, For } from "@chakra-ui/react";
+import MenuMiniPost from "./components/MenuMiniPost";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  var posts = [
+    {
+      title: "Título da Memória",
+      imagesUrl: ["/images/home-img.jpg"]
+    },
+    {
+      title: "Outra Memória",
+      imagesUrl: ["/images/teste2.jpg", "/images/home-img.jpg"]
+    },
+    {
+      title: "Mais uma Memória",
+      imagesUrl: ["/images/home-img.jpg", "/images/teste2.jpg", "/images/teste1.jpg"]
+    },
+    {
+      title: "Mais uma Memória",
+      imagesUrl: ["/images/teste1.jpg", "/images/teste2.jpg", "/images/home-img.jpg", "/images/home-img.jpg"]
+    }
+  ];
+
+  return (
+    <VStack gap={'60px'} overflowX={'hidden'}  className="relative h-screen w-screen" marginTop={'100px'}>
+      <Box position={'relative'} width={'100%'} height={'100%'} maxWidth={'50%'} maxHeight={'250px'} borderRadius={'2xl'}>
+        <AbsoluteCenter zIndex={'10'} background={{ base: 'white', _dark: 'black' }} width={'100%'} height={'100%'} borderRadius={'2xl'} boxShadow={'2xl'} overflow={'hidden'}>
+          <Box height={'100%'} left={'2%'} display={'flex'} flexDirection={'column'} alignItems={'start'} justifyContent={'center'} position={'absolute'} width={'50%'} zIndex={40}>
+            <Text fontSize={'4xl'} fontWeight={'800'}>
+              Guarde suas memórias na
+            </Text>
+            <Text lineHeight={'1'} fontSize={'6xl'} fontWeight={'800'}>
+              Inspirat.I<Text as={"span"} color="yellow.400">O</Text>
+            </Text>
+            <Text marginTop={'5%'} color='gray.500'>
+              Aqui você pode compartilhar suas memórias e se inspirar com as histórias de outras pessoas.
+            </Text>
+          </Box>
+          <Box right={'0'} position={'absolute'} width={'60%'} height={'100%'} zIndex={20}>
+            <Image src="/images/home-img.jpg" alt="Descrição da imagem" height='100%' width='100%' objectFit="cover" />
+          </Box>
+          <Box zIndex={30} width={'100%'} background={{ base: 'white', _dark: 'black' }} left={'60%'} top={'100%'} transform={'translate(-100%, -50%) rotate(-20deg)'} height={'200%'} position={'absolute'}></Box>
+        </AbsoluteCenter>
+        <Box right={'-0.5%'} bottom={'-2%'} zIndex={'5'} position={'absolute'} backgroundColor={'yellow.500'} width={'100%'} height={'100%'} borderRadius={'2xl'}></Box>
+        <Box className="bg-[#6b46018f]" right={'-1%'} bottom={'-4%'} zIndex={'1'} position={'absolute'} width={'100%'} height={'100%'} borderRadius={'2xl'}></Box>
+      </Box>
+      <VStack className="relative h-screen w-screen" maxWidth={'80%'} gap={'70px'}>
+          <Text color={'gray.emphasized'} fontSize={'4xl'} fontWeight={'bold'}>
+            Minhas Memórias
+          </Text>
+          <HStack justifyContent={'flex-start'} gap={'40px'} width={'100%'}> 
+            <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+              <For each={posts}>
+                {(post) => (
+                  <Dialog.Trigger key={posts.findIndex(p => p === post)} asChild>
+                    <MenuMiniPost MemorePost={post} />
+                  </Dialog.Trigger>
+                )}
+              </For>
+              <Portal>
+                <Dialog.Backdrop/>
+                <Dialog.Positioner >
+                  <Dialog.Content background={{ base: '#e9e9e9eb', _dark: '#2b2b2be1'}}>
+                    <Dialog.Header>
+                      <Dialog.Title>Dialog Title</Dialog.Title>
+                      <Dialog.CloseTrigger asChild>
+                        <CloseButton size="2xl" />
+                      </Dialog.CloseTrigger>
+                    </Dialog.Header>
+                    <Dialog.Body>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                      eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </Dialog.Body>
+                  </Dialog.Content>
+                </Dialog.Positioner>
+              </Portal>
+            </Dialog.Root>
+           
+  
+          </HStack>
+        </VStack>
+      </VStack>
   );
 }
