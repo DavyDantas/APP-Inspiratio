@@ -517,10 +517,8 @@ export default function EditForm() {
               onChange={addNewFiles}
               variant="subtle"
               p={1}
+              placeholder="Selecione novos arquivos"
             />
-            <Text fontSize="sm" color="gray.600" mt={1}>
-              Selecione novas imagens ou vídeos para adicionar à sua memória
-            </Text>
           </Box>
 
           {/* Botões de Ação */}
@@ -550,7 +548,7 @@ export default function EditForm() {
         
         <Box position={'relative'} display={{ base: 'none', xl: 'block' }} flex="1" minWidth="300px">
           <Trail open={open}>
-            <Text as={'span'}>Editar sua</Text>
+            <Text as={'span'}>Edite sua</Text>
             <Box display={'flex'} flexWrap={'nowrap'} flexDirection={'row'}>
               <Text as={'span'}>memória</Text>
                 <animated.div className="absolute right-[-90px] top-[-10px]">
