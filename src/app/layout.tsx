@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
-import Header from "./components/Header";
+import Header from "../components/Header";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,10 +19,9 @@ export default function RootLayout(props: {children: React.ReactNode}) {
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.variable} antialiased h-screen w-screen`}
       >
         <Provider>
-          <Header/>
           {children}
         </Provider>
       </body>

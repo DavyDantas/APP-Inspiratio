@@ -1,0 +1,10 @@
+<svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="150" fill="#f7fafc"/>
+  <rect x="30" y="40" width="60" height="40" rx="4" fill="#e2e8f0"/>
+  <rect x="45" y="50" width="30" height="3" fill="#a0aec0"/>
+  <rect x="45" y="57" width="20" height="3" fill="#a0aec0"/>
+  <rect x="45" y="64" width="25" height="3" fill="#a0aec0"/>
+  <circle cx="75" cy="55" r="8" fill="#cbd5e0"/>
+  <polygon points="75,50 80,60 70,60" fill="#a0aec0"/>
+  <text x="60" y="110" text-anchor="middle" fill="#718096" font-family="Arial, sans-serif" font-size="10">Sem Preview</text>
+</svg>

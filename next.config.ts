@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@chakra-ui/react"],
   },
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'kuavmwiqmlrfbddxoxjr.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
   },
