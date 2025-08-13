@@ -1,13 +1,27 @@
 "use client";
 
-import { AbsoluteCenter, Avatar, Box, Button, ButtonGroup, ButtonPropsProvider, HStack, Text } from "@chakra-ui/react";
+import { AbsoluteCenter, Avatar, Box, Button, ButtonGroup, ButtonPropsProvider, HStack, Text, Menu, Portal } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { useUser } from "@/context/auth";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
     const { user } = useUser();
+    const router = useRouter();
+    const supabase = createClient();
+
+    const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error('Error signing out:', error);
+      return;
+    }
+    router.push('/login');
+  };
 
     return (
         <header>
@@ -35,11 +49,25 @@ export default function Header() {
                         </Link>
                     </ButtonGroup>
                     <HStack>
-                        <Avatar.Root boxShadow={'md'} cursor={"pointer"}>
-                          <Avatar.Fallback name="Segun Adebayo" />
-                          <Avatar.Image src={user?.user_metadata?.avatar_url} />
-                        </Avatar.Root>
-                        <Text>{user?.user_metadata?.name}</Text>
+                        <Menu.Root>
+                            <Menu.Trigger asChild>
+                                <Button variant="ghost" width={'auto'} height={'auto'} padding={'5px'} size="sm">
+                                <Avatar.Root boxShadow={'md'} cursor={"pointer"}>
+                                    <Avatar.Fallback name="Segun Adebayo" />
+                                    <Avatar.Image src={user?.user_metadata?.avatar_url} />
+                                </Avatar.Root>
+                                <Text>{user?.user_metadata?.name}</Text>
+                                </Button>
+                            </Menu.Trigger>
+                            <Portal>
+                                <Menu.Positioner>
+                                <Menu.Content>
+                                    <Menu.Item onClick={handleSignOut} color={'red.500'} value="new-txt">Sair</Menu.Item>
+                                </Menu.Content>
+                                </Menu.Positioner>
+                            </Portal>
+                    </Menu.Root>
+                        
                     </HStack>
                 </HStack>
             </AbsoluteCenter>

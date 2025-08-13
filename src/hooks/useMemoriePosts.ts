@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import { useUser } from "@/context/auth"
 
 // Interface que representa os dados vindos do Supabase
 export interface SupabaseMemoriePost {
@@ -30,8 +31,11 @@ export const useMemoriePosts = () => {
   const [posts, setPosts] = useState<MemoriePostData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useUser();
 
   const fetchPosts = async () => {
+    if (!user) return;
+
     try {
       setLoading(true);
       const supabase = createClient();
@@ -40,6 +44,7 @@ export const useMemoriePosts = () => {
       const { data: memoriePostsData, error: postsError } = await supabase
         .from('MemoriePost')
         .select(`*, MidiaData (*)`)
+        .eq('user', user.id)
         .order('created_at', { ascending: false });
 
       if (postsError) {
