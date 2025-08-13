@@ -40,7 +40,6 @@ export const useMemoriePosts = () => {
       setLoading(true);
       const supabase = createClient();
       
-      // Buscar posts com suas respectivas mídias seguindo a estrutura das tabelas
       const { data: memoriePostsData, error: postsError } = await supabase
         .from('MemoriePost')
         .select(`*, MidiaData (*)`)
@@ -48,18 +47,12 @@ export const useMemoriePosts = () => {
         .order('created_at', { ascending: false });
 
       if (postsError) {
-        console.error("Erro ao buscar posts:", postsError);
         throw postsError;
       }
 
-      console.log("Dados brutos do Supabase:", memoriePostsData);
-
-      // Transformar os dados para o formato esperado pelos componentes
       const transformedPosts: MemoriePostData[] = (memoriePostsData || []).map((post) => {
-        // Extrair URLs das mídias da tabela MidiaData
         const mediaUrls = post.MidiaData?.map((midiaItem: MidiaData) => midiaItem.midia as string) || [];
 
-        // Extrair notas da tabela MidiaData como comentários
         const comments = post.MidiaData?.map((midiaItem: MidiaData) => ({
           text: midiaItem.note || ''
         })) || [];

@@ -19,7 +19,7 @@ export default function Home() {
               Inspirat.I<Text as={"span"} color="yellow.400">O</Text>
             </Text>
             <Text fontSize={'sm'} marginTop={'5%'} color='gray.500'>
-              Aqui você pode compartilhar suas memórias e se inspirar com as histórias de outras pessoas.
+              Aqui você pode compartilhar e guardar suas melhores memórias.
             </Text>
           </Box>
           <Box right={'0'} position={'absolute'} width={'60%'} height={'100%'} zIndex={20}>
